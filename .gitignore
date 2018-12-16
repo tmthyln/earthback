@@ -102,3 +102,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# IntelliJ
+.idea/
+
+# Working Image Files
+imgs/*.bmp
+imgs/*.jpg
+imgs/*.png

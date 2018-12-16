@@ -7,7 +7,7 @@ CONFIG_FILE = 'config.yaml'
 
 if not os.path.exists(CONFIG_FILE):
     DEFAULT_CONFIG = {
-        'source': 'https://www.reddit.com/r/EarthPorn',
+        'source': 'earthporn',
         'rotf': 1,
     }
     

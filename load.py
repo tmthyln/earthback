@@ -11,3 +11,6 @@ def set_background(img_filename):
 
 set_background('imgs/scottish.bmp')
 
+
+
+

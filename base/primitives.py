@@ -37,11 +37,11 @@ def load(img_id):
     return img
 
 
-def fetch_and_filter(time_filter: str = 'week') -> List[str]:
+def fetch_and_filter(time_filter: str = 'week', limit=500) -> List[str]:
     images = []
     
     with persistent.EarthBackDatabase() as db:
-        for submission in reddit.subreddit(config.get_property('source')).top(time_filter, limit=500):
+        for submission in reddit.subreddit(config.get_property('source')).top(time_filter, limit=limit):
             # extract url info (break if no more posts)
             try:
                 img_url = submission.preview['images'][0]['source']['url']
@@ -75,13 +75,13 @@ def fetch_and_filter(time_filter: str = 'week') -> List[str]:
                        (id_name, img_url, 0, desc, '', img))
     
         db.execute('SELECT Count(id) FROM images')
-        print(db.fetchone())
+        print('Current size of database: ', db.fetchone()[0], ' images')
     
     return images
 
 
 # set_background('imgs/scottish.jpg')
 
-fetch_and_filter('year')
+fetch_and_filter('week', limit=1000)
 
 

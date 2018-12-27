@@ -15,7 +15,7 @@ class EarthBackDatabase:
         score INTEGER,
         description TEXT,
         short TEXT,
-        image BLOB)''')
+        path TEXT)''')
         
         self.conn.commit()
     
@@ -28,7 +28,5 @@ class EarthBackDatabase:
 
 
 if __name__ == '__main__':
-    with EarthBackDatabase() as db:
-        for res in db.execute('''INSERT INTO images VALUES ('a788653', 'https://somewhere', 10, 'long',
-        'short', 'imageimageimage')''').execute('''SELECT * FROM images'''):
-            print(res)
+    pass
+

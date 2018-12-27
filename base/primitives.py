@@ -67,12 +67,16 @@ def fetch_and_filter(time_filter: str = 'week', limit=500) -> List[str]:
             id_name = img_filename.split('.')[0]
             images.append(id_name)
             
-            # extract image
-            img = r.content
+            # path to local image
+            img_path = f'imgs/{img_filename}'
+
+            # save image
+            with open(img_path, 'wb') as f:
+                f.write(r.content)
             
             # insert into database (persistent on disk)
             db.execute('INSERT INTO images VALUES (?,?,?,?,?,?)',
-                       (id_name, img_url, 0, desc, '', img))
+                       (id_name, img_url, -1, desc, '', img_path))
     
         db.execute('SELECT Count(id) FROM images')
         print('Current size of database: ', db.fetchone()[0], ' images')

@@ -86,6 +86,6 @@ def fetch_and_filter(time_filter: str = 'week', limit=500) -> List[str]:
 
 # set_background('imgs/scottish.jpg')
 
-fetch_and_filter('week', limit=1000)
+# fetch_and_filter('week', limit=1000)
 
 

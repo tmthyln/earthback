@@ -101,5 +101,7 @@ venv.bak/
 imgs/*.bmp
 imgs/*.jpg
 imgs/*.png
+
+# Databases
 *.db
 *.db-journal

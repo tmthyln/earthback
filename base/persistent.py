@@ -8,6 +8,7 @@ class EarthBackDatabase:
     def __init__(self, file='earthback.db'):
         self.conn = sqlite3.connect(file)
         
+        # TODO later, move to setup script
         self.conn.execute('''
         CREATE TABLE IF NOT EXISTS images (
         id TEXT PRIMARY KEY ON CONFLICT REPLACE,
@@ -28,5 +29,7 @@ class EarthBackDatabase:
 
 
 if __name__ == '__main__':
-    pass
+    with EarthBackDatabase() as db:
+        db.execute('SELECT * FROM images')
+        print(db.fetchone())
 

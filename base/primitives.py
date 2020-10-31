@@ -18,7 +18,7 @@ def set_background(img_filename: str):
     ctypes.windll.user32.SystemParametersInfoW(20, 0, os.path.abspath(img_filename), 3)
 
 
-reddit = praw.Reddit('earthback', user_agent='earthback app by /u/tmthyln')
+reddit = praw.Reddit('earthback', user_agent='earthback app by u/tmthyln')
 
 
 def load(img_id):
@@ -38,6 +38,21 @@ def load(img_id):
 
 
 def fetch_and_filter(time_filter: str = 'week', limit=500) -> List[str]:
+    """
+    Fetches more images from Reddit and adds them to the database file (saving
+    the images to a local directory, not to the database). Returns a list of the
+    image ids for images that were just added.
+    
+    TODO only return images that were added, exclude those already existing
+    
+    Args:
+        time_filter: span of time to grab the top images of the sub-reddit
+        limit: maximum number of images to fetch
+
+    Returns:
+        list of image ids for images just added
+    """
+    
     images = []
     
     with persistent.EarthBackDatabase() as db:
@@ -84,8 +99,7 @@ def fetch_and_filter(time_filter: str = 'week', limit=500) -> List[str]:
     return images
 
 
-# set_background('imgs/scottish.jpg')
+# set_background('imgs/0a9j19hbhs621.jpg')
 
-# fetch_and_filter('week', limit=1000)
-
+fetch_and_filter('day', limit=100)
 
